@@ -2,15 +2,12 @@ import React from 'react';
 import './App.css';
 import Form from './Form';
 
-function App() {
+export default function App() {
 
   return (
-    <div className="App">
+    <div className="flex page">
       <h1>Supremedicator</h1>
       <Form />
     </div>
   );
 }
-
-export default App;
-
