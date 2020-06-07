@@ -1,3 +1,6 @@
+import { googlData } from './googl';
+import { googlRSI } from './googlRSI';
+
 var periods = 2;
 
 const BASE_URL = "https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY_ADJUSTED&symbol=";
