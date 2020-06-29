@@ -1,8 +1,9 @@
 body {
-  background-color: rgb(130, 190, 130);
+  background-color: rgb(167, 203, 160);
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center; 
   margin: 0;
   font-family: 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -10,44 +11,80 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 h1 {
-  margin-bottom: 0px;
-  font-size: 5vh;
+  margin: 0;
+  margin-bottom: 10px;
+  font-size: 4rem;
   font-family: Roboto;
 }
-h2 {
-  font-size: 2vh;
-  margin: 25px 0px;
-  font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color:rgb(238, 238, 238);
+  box-shadow: 0px 5px 13px 4px rgb(65, 65, 65);
+  padding-top: 5px;
+  width: 650px;
+  height: 180px;
+  margin: 40px auto;
+  border-radius: 5%/20%;
+
 }
-.chart {
-  margin-right: 20px;
+.cardtainer {
+  grid-row: 2 / 3;
+  grid-column: 2 / 3;
 }
-.page {
-  margin-top: 35px;
-  width: 1100px;
-  height:  1150px;
-  background-color: rgb(255, 255, 255);
-  box-shadow: 0px 5px 20px 4px rgb(61, 61, 61);
-  border-radius: 5%;
-  text-align: center; 
+.boardtainer {
+  background-color: rgb(238, 238, 238);
+  box-shadow: 0px 5px 20px 2px rgb(62, 62, 62);
+  width: 650px;
+  height: 700px;
+  overflow-y: scroll;
+  border-radius: 7%/5%;
+  display: grid;
+  grid-template-columns: 10px auto 10px;
+  grid-template-rows: 30px 1200px 30px;
 }
-.flex {
+.formtainer {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: rgb(238, 238, 238);
+  box-shadow: 0px 5px 20px 4px rgb(84, 84, 84);
+  width: 650px;
+  min-height: 250px;
+  padding-top: 30px;
+  padding-bottom: 50px;
+  border-radius: 5%/10%;
 }
-.graphtainer {
-  justify-content: center;
-  background-color: white;
-  box-shadow: 0px 0px 12px 0px rgb(88, 88, 88);
-  padding: 40px 20px;
+.posted {
   border-radius: 5%;
-  margin: 25px 0px;
+}
+.skinny {
+  border-radius: 10%/5%;
 }
 .spacer {
-  margin: 10px 0px;
+  height: 100px;
+}
+.tester{
+  box-shadow: 0px 5px 20px 4px rgb(#949494);
 }
 
-.tester{
-  box-shadow: 0px 5px 20px 4px rgb(#df1414);
+@media only screen and (max-width: 650px) {
+  h1 {
+    font-size: 3.5rem;
+  }
+  .header {
+    width: 450px;
+    border-radius: 5%/10%;
+  }
+  .formtainer {
+    width: 475px;
+  }
+  .boardtainer {
+    width: 475px;
+    border-radius: 8%/5%;
+    max-height: none;
+    overflow-y: visible;
+  }
 }

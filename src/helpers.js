@@ -3,11 +3,11 @@ import { googlRSI } from './googlRSI';
 
 var periods = 2;
 
-const BASE_URL = "https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY_ADJUSTED&symbol=";
-const END_URL = "&apikey=K59WEQJ3XCLUDX75&outputsize=full";
+//const BASE_URL = "https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY_ADJUSTED&symbol=";
+//const END_URL = "&apikey=K59WEQJ3XCLUDX75&outputsize=full";
 
-const RSI_URL = "https://www.alphavantage.co/query?function=RSI&symbol=";
-const END_RSI = '&interval=monthly&time_period=' + periods + '&series_type=close&apikey=K59WEQJ3XCLUDX75&outputsize=full';
+//const RSI_URL = "https://www.alphavantage.co/query?function=RSI&symbol=";
+//const END_RSI = '&interval=monthly&time_period=' + periods + '&series_type=close&apikey=K59WEQJ3XCLUDX75&outputsize=full';
 
 // graph params
 var tickerData = [];
@@ -19,18 +19,19 @@ export async function getMonthly(ticker) {
   await getTickerData(ticker); 
   await getRSIdata(ticker);
   var rsiTrade = tradeRSI();
-  console.log(rsiTrade);
   var winRate = Math.floor((rsiTrade.totalWins / rsiTrade.totalBuys) * 100);
-  console.log(tickerData);
-  return [maxY, tickerData, winRate];
+  
+  let res = ["GOOGL", "RSI", winRate, maxY, tickerData];
+  console.log(res);
+  return res;
 }
 
 async function getTickerData(ticker) {
-  const data = await fetch(BASE_URL + ticker + END_URL) 
-    .then(res => res.json()); // json
-  console.log(data)
-  for (const date in data["Monthly Adjusted Time Series"]) { // make array, get max for graph
-    let price = data["Monthly Adjusted Time Series"][date]["4. close"]; // get close price
+  //const data = await fetch(BASE_URL + ticker + END_URL) 
+  //  .then(res => res.json()); // json
+
+  for (const date in googlData["Monthly Adjusted Time Series"]) { // make array, get max for graph
+    let price = googlData["Monthly Adjusted Time Series"][date]["4. close"]; // get close price
     tickerData.push({ "Year": date.substring(0,4), "Price": price }); // push to array
     if (parseFloat(price) > maxY) { // get max for chart 
       maxY = price;
@@ -41,11 +42,11 @@ async function getTickerData(ticker) {
 }
 
 async function getRSIdata(ticker) {
-  const RSIdata = await fetch(RSI_URL + ticker + END_RSI)
-    .then(res => res.json());
-  console.log(RSIdata)
-  for (const date in RSIdata["Technical Analysis: RSI"]) {
-    let rsi = RSIdata["Technical Analysis: RSI"][date]["RSI"];
+  //const RSIdata = await fetch(RSI_URL + ticker + END_RSI)
+  //  .then(res => res.json());
+
+  for (const date in googlRSI["Technical Analysis: RSI"]) {
+    let rsi = googlRSI["Technical Analysis: RSI"][date]["RSI"];
     rsiData.push(rsi);
   }
   rsiData.reverse();
@@ -88,6 +89,6 @@ function tradeRSI() {
       prevEvent.price = curr_price;
     }
   }
-
+  console.log(positions);
   return positions;
 }
